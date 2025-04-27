@@ -1,0 +1,46 @@
+/* src/pages/Login.css */
+.auth-container {
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .logo-container {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 20px;
+  }
+  
+  .logo-container h1 {
+    font-size: 28px;
+    color: var(--ion-color-primary);
+    margin-bottom: 10px;
+  }
+  
+  .logo-container p {
+    opacity: 0.8;
+  }
+  
+  .auth-button-container {
+    margin-top: 30px;
+  }
+  
+  .error-message {
+    color: var(--ion-color-danger);
+    font-size: 14px;
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  .forgot-password {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  .demo-credentials {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 12px;
+    opacity: 0.7;
+  }

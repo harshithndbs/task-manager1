@@ -1,0 +1,81 @@
+/* src/pages/Home.css */
+.welcome-container {
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .welcome-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--ion-color-primary);
+    margin-bottom: 10px;
+  }
+  
+  .welcome-container p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+  }
+  
+  .stats-overview {
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .stats-overview h2 {
+    margin-bottom: 5px;
+    font-size: 20px;
+  }
+  
+  .stats-overview p {
+    margin-bottom: 15px;
+    opacity: 0.7;
+  }
+  
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-top: 5px;
+    opacity: 0.8;
+  }
+  
+  .stat-card {
+    text-align: center;
+  }
+  
+  .stat-card ion-card-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .stat-icon {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  .completed-card .stat-icon {
+    color: var(--ion-color-success);
+  }
+  
+  .pending-card .stat-icon {
+    color: var(--ion-color-warning);
+  }
+  
+  .category-stat {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
+  .category-stat span {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+  
+  .category-count {
+    font-weight: bold;
+  }
