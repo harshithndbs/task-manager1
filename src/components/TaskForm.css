@@ -1,0 +1,28 @@
+/* src/components/TaskForm.css */
+
+.form-actions {
+    margin-top: 24px;
+  }
+  
+  ion-datetime.date-picker-modal {
+    --background: var(--ion-color-light);
+    --border-radius: 8px;
+    margin: 0 auto;
+    max-width: 350px;
+  }
+  
+  ion-item.ion-invalid {
+    --highlight-color: var(--ion-color-danger);
+  }
+  
+  ion-item ion-note[slot="error"] {
+    font-size: 13px;
+    margin-top: 8px;
+    color: var(--ion-color-danger);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    ion-datetime.date-picker-modal {
+      --background: var(--ion-color-dark-shade);
+    }
+  }

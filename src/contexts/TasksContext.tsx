@@ -52,18 +52,28 @@ export const TasksProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   // Fetch all tasks for the current user
   const fetchTasks = async (filters?: { category?: string; completed?: boolean }) => {
-    if (!isAuthenticated || !user) {
+    if (!isAuthenticated) {
+      console.log("Not authenticated, clearing tasks");
       setTasks([]);
       return;
     }
     
+    if (!user) {
+      console.log("No user found, clearing tasks");
+      setTasks([]);
+      return;
+    }
+    
+    console.log("Fetching tasks for user:", user.id);
     setLoading(true);
     setError(null);
     
     try {
       const fetchedTasks = await taskApi.getTasks(user.id, filters);
+      console.log(`Fetched ${fetchedTasks.length} tasks for user ${user.id}`);
       setTasks(fetchedTasks);
     } catch (err: any) {
+      console.error("Error fetching tasks:", err);
       setError(err.message || 'Error fetching tasks');
     } finally {
       setLoading(false);
@@ -85,8 +95,9 @@ export const TasksProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   };
 
-  // Fetch tasks when user changes
+  // Fetch tasks when auth state changes
   useEffect(() => {
+    console.log("Auth state changed - isAuthenticated:", isAuthenticated, "user:", user);
     if (isAuthenticated && user) {
       fetchTasks();
       refreshStats();

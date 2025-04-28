@@ -1,0 +1,325 @@
+/* src/pages/TaskStats.css */
+
+.error-message {
+    padding: 25px 20px;
+    text-align: center;
+    background: var(--ion-color-light);
+    border-radius: 8px;
+    margin: 20px;
+  }
+  
+  .error-message p {
+    color: var(--ion-color-danger);
+    margin-bottom: 15px;
+  }
+  
+  /* Completion Stats */
+  .completion-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+  }
+  
+  .stats-circle {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: conic-gradient(
+      var(--ion-color-success) calc(var(--completion-rate) * 1%),
+      var(--ion-color-light) 0
+    );
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .stats-circle-inner {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    background: var(--ion-background-color);
+    border-radius: 50%;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .stats-circle-inner h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0;
+    color: var(--ion-color-primary);
+  }
+  
+  .stats-circle-inner p {
+    margin: 0;
+    color: var(--ion-color-medium);
+    font-size: 14px;
+  }
+  
+  .stats-details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .stats-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+  }
+  
+  .stats-item ion-icon {
+    font-size: 24px;
+  }
+  
+  /* Task Status */
+  .task-status-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 10px 0;
+  }
+  
+  .status-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .status-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .status-icon span {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .status-icon.overdue {
+    background-color: var(--ion-color-danger);
+  }
+  
+  .status-icon.today {
+    background-color: var(--ion-color-warning);
+  }
+  
+  .status-icon.upcoming {
+    background-color: var(--ion-color-success);
+  }
+  
+  .status-text h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .status-text p {
+    margin: 5px 0 0;
+    font-size: 12px;
+    color: var(--ion-color-medium);
+  }
+  
+  /* Chart */
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .chart-controls {
+    display: flex;
+    align-items: center;
+  }
+  
+  .chart-container {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0;
+  }
+  
+  .pie-chart-visual {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+  }
+  
+  .pie-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  
+  .chart-legend-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .chart-legend-center span:first-child {
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--ion-color-dark);
+  }
+  
+  .chart-legend-center span:last-child {
+    font-size: 14px;
+    color: var(--ion-color-medium);
+  }
+  
+  .bar-chart-visual {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .bar-item {
+    margin-bottom: 15px;
+  }
+  
+  .bar-label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .bar-container {
+    display: flex;
+    align-items: center;
+    height: 30px;
+  }
+  
+  .bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+  
+  .bar-value {
+    margin-left: 10px;
+    font-weight: bold;
+  }
+  
+  .chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+    padding: 10px;
+    border-top: 1px solid var(--ion-color-light);
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+  }
+  
+  .legend-text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .legend-name {
+    font-size: 14px;
+  }
+  
+  .legend-value {
+    font-size: 12px;
+    color: var(--ion-color-medium);
+  }
+  
+  .empty-chart, .empty-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    color: var(--ion-color-medium);
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Task Details List */
+  .task-details-list .completed-task {
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+  
+  .task-details-list .view-all {
+    text-align: center;
+    color: var(--ion-color-primary);
+    font-weight: 500;
+    font-size: 14px;
+  }
+  
+  .task-details-list .due-date {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--ion-color-medium);
+    max-width: 80px;
+  }
+  
+  /* Responsive adjustments */
+  @media (min-width: 768px) {
+    .completion-stats {
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+    
+    .stats-details {
+      max-width: 300px;
+    }
+    
+    .chart-container {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .pie-chart .pie-chart-visual,
+    .bar-chart .bar-chart-visual {
+      flex: 1 1 60%;
+    }
+    
+    .pie-chart .chart-legend,
+    .bar-chart .chart-legend {
+      flex: 1 1 40%;
+      flex-direction: column;
+      border-top: none;
+      border-left: 1px solid var(--ion-color-light);
+      padding-left: 20px;
+      margin-top: 0;
+    }
+  }

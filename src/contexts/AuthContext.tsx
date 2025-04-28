@@ -39,11 +39,31 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Check for existing user on mount
   useEffect(() => {
     const checkAuth = () => {
-      const currentUser = authApi.getCurrentUser();
-      const isLoggedIn = authApi.isLoggedIn();
+      // Auto-login with the demo user for testing purposes
+      const demoMode = true; // Set to false to disable auto-login
       
-      setUser(currentUser);
-      setIsAuthenticated(isLoggedIn);
+      if (demoMode) {
+        console.log("Auto-login with demo user for testing");
+        // Simulate a logged-in demo user
+        const demoUser = {
+          id: "user1",
+          name: "Demo User",
+          email: "demo@example.com"
+        };
+        
+        setUser(demoUser);
+        setIsAuthenticated(true);
+        localStorage.setItem('task-manager-current-user', JSON.stringify(demoUser));
+        localStorage.setItem('task-manager-auth-token', 'demo-token');
+      } else {
+        // Normal authentication check
+        const currentUser = authApi.getCurrentUser();
+        const isLoggedIn = authApi.isLoggedIn();
+        
+        setUser(currentUser);
+        setIsAuthenticated(isLoggedIn);
+      }
+      
       setLoading(false);
     };
     
@@ -56,9 +76,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setError(null);
     
     try {
-      const { user } = await authApi.login(email, password);
-      setUser(user);
-      setIsAuthenticated(true);
+      // For demo purposes, automatically succeed with demo user
+      if (email === "demo@example.com" && password === "password") {
+        const demoUser = {
+          id: "user1",
+          name: "Demo User",
+          email: "demo@example.com"
+        };
+        
+        setUser(demoUser);
+        setIsAuthenticated(true);
+        
+        // Store user data in localStorage
+        localStorage.setItem('task-manager-current-user', JSON.stringify(demoUser));
+        localStorage.setItem('task-manager-auth-token', 'demo-token');
+      } else {
+        // Regular login flow
+        const { user } = await authApi.login(email, password);
+        setUser(user);
+        setIsAuthenticated(true);
+      }
     } catch (err: any) {
       setError(err.message);
     } finally {

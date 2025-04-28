@@ -1,6 +1,6 @@
 // src/App.tsx
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -12,14 +12,16 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { home, list, person, settings } from 'ionicons/icons';
+import { home, list, person, settings, analytics } from 'ionicons/icons';
 
 // Import pages
 import Home from './pages/Home';
 import Tasks from './pages/Tasks';
 import TaskDetail from './pages/TaskDetail';
+import NewTask from './pages/NewTask';
 import Login from './pages/Login';
 import Settings from './pages/Settings';
+import TaskStats from './pages/TaskStats';
 
 // Import context providers
 import { AuthProvider, useAuth } from './contexts/AuthContext';
@@ -79,14 +81,26 @@ const AppTabs: React.FC = () => {
   return (
     <IonTabs>
       <IonRouterOutlet>
-        <Route path="/home" component={Home} exact />
-        <ProtectedRoute path="/tasks" component={Tasks} exact />
-        <ProtectedRoute path="/tasks/:id" component={TaskDetail} exact />
-        <Route path="/login" component={Login} exact />
-        <ProtectedRoute path="/settings" component={Settings} exact />
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
+        <Switch>
+          {/* Home route */}
+          <Route path="/home" component={Home} exact />
+          
+          {/* Specific route for creating new task - MUST be before the dynamic route */}
+          <ProtectedRoute path="/create-task" component={NewTask} exact />
+          
+          {/* Tasks routes */}
+          <ProtectedRoute path="/tasks/:id" component={TaskDetail} exact />
+          <ProtectedRoute path="/tasks" component={Tasks} exact />
+          
+          <ProtectedRoute path="/stats" component={TaskStats} exact />
+          <Route path="/login" component={Login} exact />
+          <ProtectedRoute path="/settings" component={Settings} exact />
+          
+          {/* Default redirect */}
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+        </Switch>
       </IonRouterOutlet>
       
       <IonTabBar slot="bottom">
@@ -99,6 +113,13 @@ const AppTabs: React.FC = () => {
           <IonIcon icon={list} />
           <IonLabel>Tasks</IonLabel>
         </IonTabButton>
+        
+        {isAuthenticated && (
+          <IonTabButton tab="stats" href="/stats">
+            <IonIcon icon={analytics} />
+            <IonLabel>Stats</IonLabel>
+          </IonTabButton>
+        )}
         
         {isAuthenticated ? (
           <IonTabButton tab="settings" href="/settings">
