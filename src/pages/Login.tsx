@@ -1,5 +1,4 @@
-// src/pages/Login.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import {
   IonContent,
@@ -42,11 +41,13 @@ const Login: React.FC = () => {
   const { login, register, loading, error, clearError, isAuthenticated } = useAuth();
   const history = useHistory();
   
-  if (isAuthenticated) {
-    history.replace('/tasks');
-    return null;
-  }
-  
+  // Using useEffect for redirection after authentication state changes
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push('/tasks'); // Redirect after successful login
+    }
+  }, [isAuthenticated, history]); // Dependency on isAuthenticated to ensure it runs when it changes
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     
