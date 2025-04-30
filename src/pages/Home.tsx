@@ -221,7 +221,9 @@ const Home: React.FC = () => {
         )}
       </IonContent>
     </IonPage>
-  );
-};
 
+     // src/app/home/home.page.ts
+      )
+
+    }
 export default Home;

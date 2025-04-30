@@ -12,7 +12,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { home, list, person, settings, analytics } from 'ionicons/icons';
+import { home, list, person, settings, analytics, camera } from 'ionicons/icons'; // added camera icon
 
 // Import pages
 import Home from './pages/Home';
@@ -22,6 +22,7 @@ import NewTask from './pages/NewTask';
 import Login from './pages/Login';
 import Settings from './pages/Settings';
 import TaskStats from './pages/TaskStats';
+import CameraPage from './pages/camera'; // added Camera page
 
 // Import context providers
 import { AuthProvider, useAuth } from './contexts/AuthContext';
@@ -82,45 +83,46 @@ const AppTabs: React.FC = () => {
     <IonTabs>
       <IonRouterOutlet>
         <Switch>
-          {/* Home route */}
           <Route path="/home" component={Home} exact />
-          
-          {/* Specific route for creating new task - MUST be before the dynamic route */}
           <ProtectedRoute path="/create-task" component={NewTask} exact />
-          
-          {/* Tasks routes */}
           <ProtectedRoute path="/tasks/:id" component={TaskDetail} exact />
           <ProtectedRoute path="/tasks" component={Tasks} exact />
-          
           <ProtectedRoute path="/stats" component={TaskStats} exact />
           <Route path="/login" component={Login} exact />
           <ProtectedRoute path="/settings" component={Settings} exact />
-          
-          {/* Default redirect */}
+          <ProtectedRoute path="/camera" component={CameraPage} exact /> {/*  added camera route */}
+
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
         </Switch>
       </IonRouterOutlet>
-      
+
       <IonTabBar slot="bottom">
         <IonTabButton tab="home" href="/home">
           <IonIcon icon={home} />
           <IonLabel>Home</IonLabel>
         </IonTabButton>
-        
+
         <IonTabButton tab="tasks" href="/tasks">
           <IonIcon icon={list} />
           <IonLabel>Tasks</IonLabel>
         </IonTabButton>
-        
+
         {isAuthenticated && (
           <IonTabButton tab="stats" href="/stats">
             <IonIcon icon={analytics} />
             <IonLabel>Stats</IonLabel>
           </IonTabButton>
         )}
-        
+
+        {isAuthenticated && (
+          <IonTabButton tab="camera" href="/camera"> {/*  optional camera tab */}
+            <IonIcon icon={camera} />
+            <IonLabel>Camera</IonLabel>
+          </IonTabButton>
+        )}
+
         {isAuthenticated ? (
           <IonTabButton tab="settings" href="/settings">
             <IonIcon icon={settings} />
